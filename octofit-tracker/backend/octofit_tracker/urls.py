@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .views import UserViewSet, TeamViewSet, ActivityViewSet, WorkoutViewSet, LeaderboardViewSet
 
+@api_view(['GET'])
 def custom_api_root(request, format=None):
     codespace_name = os.getenv('CODESPACE_NAME', 'localhost')
     base_url = f'https://{codespace_name}-8000.app.github.dev/api'
